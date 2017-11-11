@@ -13,6 +13,7 @@ bot.on('ready', async () => {
     } catch(e) {
         console.log(e.stack);
     }
+    bot.user.setGame("read if gay");
 });
 
 bot.on('message', async message => {
@@ -22,7 +23,7 @@ bot.on('message', async message => {
     var getAnekdot = AnekdotArr[rand];
     //функции чат-бота
         if(message.author.bot) return;
-        if(message.content.indexOf(prefix) !== 0) return;
+        if(!message.content.startsWith(prefix)) return;
         //отделение символа длиной в префикс а затем неведомая хуйня
         let messageArray = message.content.slice(prefix.length).trim().split(/ !/g);
         let command = messageArray.shift().toLowerCase();
@@ -32,7 +33,11 @@ bot.on('message', async message => {
                 case 'userinfo':
                     let embed = new Discord.RichEmbed()
                         .setAuthor(message.author.username)
-                        .setDescription("He is so dumb, LOL!");
+                        .setDescription("He is so dumb, LOL!")
+                        .setColor("#00ff00")
+                        .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
+                        .addField("ID", message.author.id)
+                        .addField("Created At", message.author.createdAt);
                     message.channel.send(embed);
                     break;
                 case 'ping':
