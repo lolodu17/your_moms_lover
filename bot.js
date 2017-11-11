@@ -1,7 +1,7 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
-var chat = require('./chat_commands.js');
+var prefix = '!';
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -13,11 +13,15 @@ var bot = new Discord.Client({
    token: auth.token,
    autorun: true
 });
-bot.on('ready', function () {
+bot.on('ready', function (channelID) {
     logger.info(`Bot has started, with ${bot.users.size} users, in ${bot.channels.size} channels.`);
 });
 bot.on('message', function (user, userID, channelID, message, evt) {
-     if (message.substring(0, 1) == '!') {
+    bot.sendMessage({
+        to: channelID,
+        message: `Hello! My name is ${bot.username}`
+    });
+     if (message.substring(0, 1) == prefix) {
             var args = message.substring(1).split(' ');
             var cmd = args[0];
            
@@ -43,7 +47,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 case 'anekdot':
                 	bot.sendMessage({
                 		to: channelID,
-                		message: 'Лупа и Пупа устроились на работу. Проработали целый месяц, трудились не покладая рук и не жалея живота своего. В конце месяца Лупа и Пупа пошли получать зарплату. В бухгалтерии все как обычно перепутали. И, в итоге, Лупа получил за Пупу, а Пупа за ЛУПУ! HumorNet.ru'
+                		message: 'Лупа и Пупа устроились на работу. Проработали целый месяц, трудились не покладая рук и не жалея живота своего. В конце месяца Лупа и Пупа пошли получать зарплату. В бухгалтерии все как обычно перепутали. И, в итоге, Лупа получил за Пупу, а Пупа за ЛУПУ!'
                 	})
                 // Just add any case commands if you want to..
              }
