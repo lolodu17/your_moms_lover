@@ -43,12 +43,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                         to: channelID,
                         message: 'huy'
                     });
-                break;
+                case 'Za':
+                    bot.sendMessage({
+                        to: channelID,
+                        message: 'lupa'
+                    });    
                 case 'anekdot':
                 	bot.sendMessage({
                 		to: channelID,
                 		message: getAnekdot
-                	})
+                	});
                 // Just add any case commands if you want to..
              }
          }
