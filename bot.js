@@ -38,6 +38,7 @@ bot.on('message', async message => {
                         .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
                         .addField("ID", message.author.id)
                         .addField("Created At", message.author.createdAt);
+                    if(message.author.discriminator == 4832) embed.addField("А этот ещё и пидор", "И это точно");
                     message.channel.send(embed);
                     break;
                 case 'ping':
