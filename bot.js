@@ -40,6 +40,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                         message: 'huy'
                     });
                 break;
+                case 'anekdot':
+                	bot.sendMessage({
+                		to: channelID,
+                		message: 'Лупа и Пупа устроились на работу. Проработали целый месяц, трудились не покладая рук и не жалея живота своего. В конце месяца Лупа и Пупа пошли получать зарплату. В бухгалтерии все как обычно перепутали. И, в итоге, Лупа получил за Пупу, а Пупа за ЛУПУ! HumorNet.ru'
+                	})
                 // Just add any case commands if you want to..
              }
          }
