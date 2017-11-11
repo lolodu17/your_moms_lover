@@ -18,8 +18,8 @@ bot.on('ready', async () => {
 bot.on('message', async message => {
     //массив пентамемов
     var AnekdotArr = ['Лупа и Пупа устроились на работу. Проработали целый месяц, трудились не покладая рук и не жалея живота своего. В конце месяца Лупа и Пупа пошли получать зарплату. В бухгалтерии все как обычно перепутали. И, в итоге, Лупа получил за Пупу, а Пупа за ЛУПУ!', 'Сидят четыре пацана на скамейке, смотрят - Димон идёт. Один из пацанов говорит: -С кем Димон первый поздоровается - тот пид@р. Все согласились. Подходит к ним Димон и говорит: -Привет пацаны!', 'Сидят мужики в баре. Один говорит: - Сейчас приду домой и разорву трусики жены! - У вас что, до сих пор такие страстные отношения? - Нет, просто натерли очень!'];
-    var randomAnekdot = Math.floor(Math.random() * AnekdotArr.length);
-    var getAnekdot = AnekdotArr[randomAnekdot];
+    var rand = Math.floor(Math.random() * AnekdotArr.length);
+    var getAnekdot = AnekdotArr[rand];
     //функции чат-бота
         if(message.author.bot) return;
         if(message.content.indexOf(prefix) !== 0) return;
@@ -48,7 +48,7 @@ bot.on('message', async message => {
                     message.channel.send('lupa');   
                     break; 
                 case 'anekdot':
-                	message.channel.send(getAnekdot);
+                    message.channel.send(getAnekdot);
                     break;
              }
         
