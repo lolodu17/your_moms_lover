@@ -11,8 +11,17 @@
 			"file": "your_moms_lover_bot.sublime-project",
 			"settings":
 			{
-				"buffer_size": 4,
+				"buffer_size": 45,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bot.js",
+			"settings":
+			{
+				"buffer_size": 2671,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -46,6 +55,10 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/C/Users/bakug/Documents/BXD_Bot"
+	],
 	"file_history":
 	[
 	],
@@ -82,7 +95,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -91,7 +104,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4,
+						"buffer_size": 45,
 						"regions":
 						{
 						},
@@ -105,6 +118,36 @@
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "bot.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2671,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -193,7 +236,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 296.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
