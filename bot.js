@@ -47,6 +47,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     bot.sendMessage({
                         to: channelID,
                         message: 'lupa'
+                    break    
                     });    
                 case 'anekdot':
                 	bot.sendMessage({
@@ -59,5 +60,5 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 });
 //массив пентамемов
 var AnekdotArr = ['Лупа и Пупа устроились на работу. Проработали целый месяц, трудились не покладая рук и не жалея живота своего. В конце месяца Лупа и Пупа пошли получать зарплату. В бухгалтерии все как обычно перепутали. И, в итоге, Лупа получил за Пупу, а Пупа за ЛУПУ!', 'Сидят четыре пацана на скамейке, смотрят - Димон идёт. Один из пацанов говорит: -С кем Димон первый поздоровается - тот пид@р. Все согласились. Подходит к ним Димон и говорит: -Привет пацаны!', 'Сидят мужики в баре. Один говорит: - Сейчас приду домой и разорву трусики жены! - У вас что, до сих пор такие страстные отношения? - Нет, просто натерли очень!'];
-var getRandomArrIndex = Math.floor( (Math.random() * AnekdotArr.length) + 0);
-var getAnekdot = AnekdotArr[getRandomArrIndex];
+var rand = Math.floor(Math.random() * AnekdotArr.length);
+alert( arr[rand] );
