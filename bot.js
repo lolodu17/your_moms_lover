@@ -1,7 +1,7 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
-var chat = require('./chat_commands.js');
+var prefix = '!';
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -13,11 +13,15 @@ var bot = new Discord.Client({
    token: auth.token,
    autorun: true
 });
-bot.on('ready', function () {
+bot.on('ready', function (channelID) {
     logger.info(`Bot has started, with ${bot.users.size} users, in ${bot.channels.size} channels.`);
 });
 bot.on('message', function (user, userID, channelID, message, evt) {
-     if (message.substring(0, 1) == '!') {
+    bot.sendMessage({
+        to: channelID,
+        message: `Hello! My name is ${bot.username}`
+    });
+     if (message.substring(0, 1) == prefix) {
             var args = message.substring(1).split(' ');
             var cmd = args[0];
            
