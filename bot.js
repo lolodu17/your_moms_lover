@@ -3,6 +3,7 @@ const auth = require('./auth.json');
 const anti_spam = require("./anti_spam");
 const chat_cmd = require('./chat_commands.js');
 const ready_state = require('./ready.js');
+const test_js = require('./test.js');
 
 //инициализация бота
 const bot = new Discord.Client({disableEveryone: true});
@@ -22,7 +23,8 @@ chat_cmd(bot, {
     anekdot: 1,
     say: 1,
     ping: 1,
-    kick: 1
+    kick: 1,
+    vote: 1
 });
 
 //логин

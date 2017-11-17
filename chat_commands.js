@@ -42,12 +42,12 @@ module.exports = function(bot, options) {
                 
                 // Ooooh nice, combined conditions. <3
                 if(!deleteCount || deleteCount < 2 || deleteCount > 100)
-                return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
+                return message.reply("Укажи что-то между 2 и 100, nigga");
                 
                 // So we get our messages, and delete them. Simple enough, right?
                 const fetched = await message.channel.fetchMessages({count: deleteCount});
                 message.channel.bulkDelete(fetched)
-                    .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
+                    .catch(error => message.reply(`Чет я не могу, вот отмазка: ${error}`));
             }
             break;
 
@@ -131,6 +131,15 @@ module.exports = function(bot, options) {
                     .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
                 message.reply(`${member.user.tag} был выпнут из помойки по приказу ${message.author.tag} потому что, цитирую: ${reason}`);
             break;
+
+            case 'set_afk':
+                let chan = new Channel;
+                chan.id = messageArray[1];
+                message.guild.setAFKChannel(chan)
+                    .then(message.channel.send(`Updated guild AFK channel to ${message.guild.afkChannel}`))
+                    .catch(console.error);
+            break;
+            vote
         }
     });
 }
