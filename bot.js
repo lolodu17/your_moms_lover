@@ -5,29 +5,32 @@ const chat_cmd    = require('./chat_commands.js');
 const ready_state = require('./ready.js');
 const poller      = require('./poll_bot.js');
 
+const prefix = '!';
+let messageArray;          
+let cmd;     
+
 //инициализация бота
 const bot = new Discord.Client({disableEveryone: true});
 
-ready_state(bot);
+        ready_state(bot);
 
-anti_spam(bot, {});
+        anti_spam(bot, {});
 
-poller(bot);
+        poller(bot);
 
-chat_cmd(bot, {
-    clear: 1,
-    user_info: 1,
-    ping_old: 1,
-    pong: 1,
-    guild_info: 1,
-    za: 1,
-    count: 1,
-    anekdot: 1,
-    say: 1,
-    ping: 1,
-    kick: 1,
-    poll: 1
-});
+        chat_cmd(bot, {
+            clear: 1,
+            user_info: 1,
+            ping_old: 1,
+            pong: 1,
+            guild_info: 1,
+            za: 1,
+            count: 1,
+            anekdot: 1,
+            say: 1,
+            ping: 1,
+            kick: 1
+        });
 
 //логин
 bot.login(auth.token);
