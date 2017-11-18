@@ -4,8 +4,56 @@
 		"selected_items":
 		[
 			[
+				"r",
+				"require"
+			],
+			[
+				"cont",
+				"const\t? "
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"Cli",
+				"Client\t? "
+			],
+			[
+				"Discor",
+				"Discord\t? "
+			],
+			[
+				"flag",
+				"flag_for_poll\tbool "
+			],
+			[
+				"mes",
+				"messageArray\t? "
+			],
+			[
 				"mess",
-				"messages"
+				"message\t? "
+			],
+			[
+				"if",
+				"if\tif"
+			],
+			[
+				"messa",
+				"message"
+			],
+			[
+				"Dis",
+				"Discord\t{} "
+			],
+			[
+				"con",
+				"content"
+			],
+			[
+				"aut",
+				"authors〔variable〕"
 			],
 			[
 				"messag",
@@ -40,10 +88,6 @@
 				"channelID"
 			],
 			[
-				"messa",
-				"messageArray"
-			],
-			[
 				"anekdot",
 				"AnekdotArr"
 			]
@@ -52,54 +96,11 @@
 	"buffers":
 	[
 		{
-			"contents": "const Discord = require('discord.js');\nconst auth = require('./auth.json');\nconst anti_spam = require(\"./anti_spam\");\nconst chat_cmd = require('./chat_commands.js');\nconst ready_state = require('./ready.js');\nconst test_js = require('./test.js');\n\n//инициализация бота\nconst bot = new Discord.Client({disableEveryone: true});\n\nready_state(bot);\n\nanti_spam(bot, {});\n\nchat_cmd(bot, {\n    clear: 1,\n    user_info: 1,\n    ping_old: 1,\n    pong: 1,\n    guild_info: 1,\n    za: 1,\n    count: 1,\n    anekdot: 1,\n    say: 1,\n    ping: 1,\n    kick: 1,\n    vote: 1\n});\n\n//логин\nbot.login(auth.token);",
-			"file": "bot.js",
-			"file_size": 628,
-			"file_write_time": 131553426511776315,
+			"file": "/C/Users/bakug/Documents/Unity/colorTownTest/life/Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/victim.cs",
 			"settings":
 			{
-				"buffer_size": 590,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ready.js",
-			"settings":
-			{
-				"buffer_size": 412,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "const prefix = '!';\nlet i = 0;\n\nmodule.exports = function(bot, options) {\n    //options\n    const clear = options.clear || 0;\n    const user_info = options.user_info || 0;\n    const ping_old = options.ping_old || 0;\n    const pong = options.pong || 0;\n    const guild_info = options.guild_info || 0;\n    const za = options.za || 0;\n    const count = options.count || 0;\n    const anekdot = options.anekdot || 0;\n    const say = options.say || 0;\n    const ping = options.ping || 0;\n    const kick = options.kick || 0;\n\n    bot.on('message', async message => {\n        const AnekdotArr = ['Лупа и Пупа устроились на работу. Проработали целый месяц, трудились не покладая рук и не жалея живота своего. В конце месяца Лупа и Пупа пошли получать зарплату. В бухгалтерии все как обычно перепутали. И, в итоге, Лупа получил за Пупу, а Пупа за ЛУПУ!', 'Сидят четыре пацана на скамейке, смотрят - Димон идёт. Один из пацанов говорит: -С кем Димон первый поздоровается - тот пид@р. Все согласились. Подходит к ним Димон и говорит: -Привет пацаны!', 'Сидят мужики в баре. Один говорит: - Сейчас приду домой и разорву трусики жены! - У вас что, до сих пор такие страстные отношения? - Нет, просто натерли очень!'];\n        let rand = Math.floor(Math.random() * AnekdotArr.length);\n        let getAnekdot = AnekdotArr[rand];\n\n        //проверки правильности команды\n        //if(message.channel.type === 'dm') return;\n        if(message.author.bot) return;\n        if(!message.content.startsWith(prefix)) return;\n\n        //взятие текста сообщения и превращение его в массив БЕЗ \"!\"\n        let messageArray = message.content.slice(prefix.length).trim().split(' ');\n        //отдельно взятие текста комманды\n        let command = messageArray.shift().toLowerCase();\n \n        //свич(нинтендо) на команды чата\n        switch(command) \n        {\n            case 'clear':\n            if(clear == 1) {\n                // This command removes all messages from all users in the channel, up to 100.\n                \n                // get the delete count, as an actual number.\n                const deleteCount = parseInt(messageArray[0], 10);\n                \n                // Ooooh nice, combined conditions. <3\n                if(!deleteCount || deleteCount < 2 || deleteCount > 100)\n                return message.reply(\"Укажи что-то между 2 и 100, nigga\");\n                \n                // So we get our messages, and delete them. Simple enough, right?\n                const fetched = await message.channel.fetchMessages({count: deleteCount});\n                message.channel.bulkDelete(fetched)\n                    .catch(error => message.reply(`Чет я не могу, вот отмазка: ${error}`));\n            }\n            break;\n\n            //юзер инфо через эмбед (ну такая табличка с редактируемым количеством полей и цветной полоской слева)\n            case 'user_info':\n                let embed = new Discord.RichEmbed()\n                    .setAuthor(message.author.username)\n                    .setDescription(\"He is so dumb, LOL!\")\n                    .setColor(\"#00ff00\")\n                    .addField(\"Full Username\", `${message.author.username}#${message.author.discriminator}`)\n                    .addField(\"ID\", message.author.id)\n                    .addField(\"Created At\", message.author.createdAt);\n                if(message.author.discriminator == 4832) embed.addField(\"А этот ещё и пидор\", \"И это точно\");\n                    message.channel.send(embed);\n            break;\n\n            case 'ping_old':\n                message.channel.send('Pong!');\n            break;\n\n            case 'pong':\n                message.channel.send('idi nahuy');\n            break;\n\n            case 'guild_info':\n                message.channel.send(`В помойке ${bot.users.size - 1} пользователей, и сидят они в ${bot.channels.size} каналах. Хозяин помойки - ${message.guild.owner}`);\n            break; \n\n            case 'za':\n                message.channel.send('lupa');\n            break;\n\n            case 'count':\n                while (1) {\n                    message.channel.send(i);\n                    i = i + 1;\n                }\n            break;\n\n            case 'anekdot':\n                message.channel.send(getAnekdot);\n            break;\n\n            //хитрая функция, выводит сообщение, которое идёт в чате после команды а оригинальное сообщение УДАЛЯЕТ\n            case 'say':\n                const sayMessage = messageArray.join(' ');\n                // join соединяет элементы массива через сепаратор\n                message.delete().catch(O_o=>{});  \n                message.channel.send(sayMessage);\n            break;\n\n            case 'ping':\n                // Разница между отправкой сообщения и его редактированием\n                // Второе значение - время отправки ботом данных на сервер (односторонний пинг с веб-сокетом**)\n                const m = await message.channel.send(\"Хммм\");\n                m.edit(`Понг, блядь, иди нахуй! Твоя задержка - ${m.createdTimestamp - message.createdTimestamp}мс. Задержка АРИ - ${Math.round(bot.ping)}мс`);\n            break;\n\n            case 'kick':\n                // This command must be limited to mods and admins. In this example we just hardcode the role names.\n                // Please read on Array.some() to understand this bit: \n                // https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/some?\n                if(!message.member.roles.some(r=>[\"Батя\"].includes(r.name)) )\n                    return message.reply(\"Сори, брат, ты для этого слишком ЛОУ!\");\n    \n                // Let's first check if we have a member and if we can kick them!\n                // message.mentions.members is a collection of people that have been mentioned, as GuildMembers.\n                let member = message.mentions.members.first();\n                if(!member)\n                    return message.reply(\"Эй йо, такого нигги нет на сервер, подумай ещё (указывать надо через @\");\n                if(!member.kickable) \n                    return message.reply(\"Чёт пошло не так, походу прав не хватает\");\n    \n                // slice(1) removes the first part, which here should be the user mention!\n                let reason = messageArray.slice(1).join(' ');\n                if(!reason)\n                    return message.reply(\"Поясни за базар\");\n    \n                // Now, time for a swift kick in the nuts!\n                await member.kick(reason)\n                    .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));\n                message.reply(`${member.user.tag} был выпнут из помойки по приказу ${message.author.tag} потому что, цитирую: ${reason}`);\n            break;\n\n            case 'set_afk':\n                let chan = new Channel;\n                chan.id = messageArray[1];\n                message.guild.setAFKChannel(chan)\n                    .then(message.channel.send(`Updated guild AFK channel to ${message.guild.afkChannel}`))\n                    .catch(console.error);\n            break;\n            vote\n        }\n    });\n}",
-			"file": "chat_commands.js",
-			"file_size": 8492,
-			"file_write_time": 131552445342565663,
-			"settings":
-			{
-				"buffer_size": 7106,
-				"encoding": "UTF-8",
-				"line_ending": "Windows",
-				"name": "class"
-			}
-		},
-		{
-			"file": "test.js",
-			"settings":
-			{
-				"buffer_size": 148,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "anti_spam.js",
-			"settings":
-			{
-				"buffer_size": 3138,
-				"encoding": "UTF-8",
+				"buffer_size": 238,
+				"encoding": "UTF-8 with BOM",
 				"line_ending": "Unix"
 			}
 		}
@@ -111,16 +112,72 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 137.0,
-		"last_filter": "instal",
+		"height": 400.0,
+		"last_filter": "node",
 		"selected_items":
 		[
 			[
+				"node",
+				"Build With: Nodejs"
+			],
+			[
+				"intal",
+				"Package Control: Install Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
 				"instal",
 				"Package Control: Install Package"
+			],
+			[
+				"",
+				"SublimeCodeIntel: Enable Live Autocompletion for Current Language"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"too",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"git co",
+				"Git: Commit"
+			],
+			[
+				"git",
+				"Git: Add All"
+			],
+			[
+				"comi",
+				"Git: Commit"
 			]
 		],
-		"width": 428.0
+		"width": 544.0
 	},
 	"console":
 	{
@@ -144,8 +201,20 @@
 	],
 	"file_history":
 	[
-		"/C/Users/bakug/AppData/Roaming/Sublime Text 3/Packages/JavaScript Completions/JavaScript-Completions.sublime-settings",
+		"/C/Users/bakug/Documents/BXD_Bot/test.js",
 		"/C/Users/bakug/Documents/BXD_Bot/anti_spam.js",
+		"/C/Users/bakug/Documents/BXD_Bot/ready.js",
+		"/C/Users/bakug/Documents/BXD_Bot/bot.js",
+		"/C/Users/bakug/Documents/BXD_Bot/chat_commands.js",
+		"/C/Users/bakug/Documents/BXD_Bot/test_bot1.js",
+		"/C/Users/bakug/Documents/BXD_Bot/.tern-project",
+		"/C/Users/bakug/AppData/Roaming/Sublime Text 3/Packages/User/Tern.sublime-settings",
+		"/C/Users/bakug/Documents/BXD_Bot/.gitignore",
+		"/C/Users/bakug/AppData/Roaming/Sublime Text 3/Packages/User/SublimeCodeIntel.sublime-settings",
+		"/C/Users/bakug/AppData/Roaming/Sublime Text 3/Packages/Alignment/Default (Windows).sublime-keymap",
+		"/C/Users/bakug/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/bakug/Documents/BXD_Bot/your_moms_lover_bot.sublime-project",
+		"/C/Users/bakug/AppData/Roaming/Sublime Text 3/Packages/JavaScript Completions/JavaScript-Completions.sublime-settings",
 		"/C/Users/bakug/Documents/BXD_Bot/site/main_page.html",
 		"/C/Users/bakug/Documents/BXD_Bot/node_modules/discord-anti-spam/anti_spam.js",
 		"/C/Users/bakug/Documents/BXD_Bot/node_modules/discord-anti-spam/package.json",
@@ -156,13 +225,11 @@
 		"/E/Download/DiscordSoundboard-1.4.12 (1)/DiscordSoundboard-1.4.12/gradlew",
 		"/E/Download/DiscordSoundboard-1.4.12 (1)/DiscordSoundboard-1.4.12/build.gradle",
 		"/E/Download/DiscordSoundboard-1.4.12 (1)/DiscordSoundboard-1.4.12/src/main/java/net/dirtydeeds/discordsoundboard/repository/SoundFileRepository.java",
-		"/E/Download/DiscordSoundboard-1.4.12 (1)/DiscordSoundboard-1.4.12/src/main/java/net/dirtydeeds/discordsoundboard/beans/SoundFile.java",
-		"/C/Users/bakug/Documents/BXD_Bot/your_moms_lover_bot.sublime-project",
-		"/C/Users/bakug/Documents/BXD_Bot/bot.js"
+		"/E/Download/DiscordSoundboard-1.4.12 (1)/DiscordSoundboard-1.4.12/src/main/java/net/dirtydeeds/discordsoundboard/beans/SoundFile.java"
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -198,90 +265,29 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "bot.js",
+					"file": "/C/Users/bakug/Documents/Unity/colorTownTest/life/Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/victim.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 590,
+						"buffer_size": 238,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								488,
-								488
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 39.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "ready.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 412,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								412,
-								412
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "chat_commands.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7106,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7106,
-								7106
-							]
-						],
-						"settings":
-						{
-							"auto_name": "class",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/C#/C#.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -289,72 +295,18 @@
 					},
 					"stack_index": 0,
 					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "test.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 148,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								148,
-								101
-							]
-						],
-						"settings":
-						{
-							"auto_name": "",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "anti_spam.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3138,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								340,
-								340
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
 				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 21.0
+		"height": 36.0
 	},
 	"input":
 	{
@@ -369,11 +321,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.461963190184,
 			1.0
 		],
 		"rows":
@@ -383,15 +342,27 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 158.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 122.0
+	},
+	"output.nodejs":
+	{
+		"height": 167.0
 	},
 	"pinned_build_system": "",
 	"project": "your_moms_lover_bot.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 68.0
 	},
 	"save_all_on_build": true,
 	"select_file":

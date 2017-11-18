@@ -1,6 +1,6 @@
-const authors = [];
-var warned = [];
-var banned = [];
+const authors  = [];
+var warned     = [];
+var banned     = [];
 var messagelog = [];
 
 /**
@@ -11,13 +11,13 @@ var messagelog = [];
  */
 module.exports = function (bot, options) {
   // Set options
-  const warnBuffer = 10;
-  const maxBuffer = 20;
-  const interval = 1000;
-  const warningMessage = "тебе въебать, фраерок?";
-  const banMessage = "словил бан в помойке, ЛОЛ";
+  const warnBuffer           = 10;
+  const maxBuffer            = 20;
+  const interval             = 1000;
+  const warningMessage       = "тебе въебать, фраерок?";
+  const banMessage           = "словил бан в помойке, ЛОЛ";
   const maxDuplicatesWarning = 10;
-  const maxDuplicatesBan = 20;
+  const maxDuplicatesBan     = 20;
 
   bot.on('message', msg => {
 

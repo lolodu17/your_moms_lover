@@ -1,9 +1,9 @@
-const Discord = require('discord.js');
-const auth = require('./auth.json');
-const anti_spam = require("./anti_spam");
-const chat_cmd = require('./chat_commands.js');
+const Discord     = require('discord.js');
+const auth        = require('./auth.json');
+const anti_spam   = require("./anti_spam");
+const chat_cmd    = require('./chat_commands.js');
 const ready_state = require('./ready.js');
-const test_js = require('./test.js');
+const poller      = require('./poll_bot.js');
 
 //инициализация бота
 const bot = new Discord.Client({disableEveryone: true});
@@ -11,6 +11,8 @@ const bot = new Discord.Client({disableEveryone: true});
 ready_state(bot);
 
 anti_spam(bot, {});
+
+poller(bot);
 
 chat_cmd(bot, {
     clear: 1,
@@ -24,7 +26,7 @@ chat_cmd(bot, {
     say: 1,
     ping: 1,
     kick: 1,
-    vote: 1
+    poll: 1
 });
 
 //логин
